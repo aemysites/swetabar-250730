@@ -1,0 +1,29 @@
+{
+  "originUrl": "https://wknd.site",
+  "lastCrawled": "https://wknd.site/us/en.html",
+  "urls": [
+    {
+      "url": "https://wknd.site/us/en.html",
+      "source": "CRAWL",
+      "targetPath": "/us/en",
+      "id": "c76865e01a59d1b318b0ceda7c573c315b7d1195"
+    }
+  ],
+  "crawlOptions": {
+    "timeout": 64800000,
+    "inclusionPatterns": [
+      "/us/en.html",
+      "/us/en/**"
+    ],
+    "exclusionPatterns": [],
+    "limit": -1,
+    "sameDomain": true,
+    "keepHash": false,
+    "strategy": "crawl",
+    "logger": {},
+    "strategiesAttempted": [
+      "CRAWL"
+    ]
+  },
+  "extractionErrors": []
+}
