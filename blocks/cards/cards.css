@@ -1,3 +1,4 @@
+/* Fixed CSS Code */
 .cards > ul {
   list-style: none;
   margin: 0;
@@ -24,4 +25,139 @@
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
+}
+
+.cards.cards3 {
+  position: relative;
+  padding-bottom: 16px;
+  background: #fff;
+}
+
+/* Grid: wider cards and tighter gaps */
+.cards.cards3 > ul {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(260px, 1fr));
+  gap: 8px;
+  place-items: start stretch;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media (width <= 1100px) {
+  .cards.cards3 > ul {
+    grid-template-columns: repeat(2, minmax(260px, 1fr));
+  }
+}
+
+@media (width <= 700px) {
+  .cards.cards3 > ul {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cards.cards3 > ul > li {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-width: 0;
+  background: #fff;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  width: 100%;
+}
+
+/* Card image: slightly wider ratio, less height */
+.cards.cards3 .cards-card-image {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+}
+
+.cards.cards3 .cards-card-image picture,
+.cards.cards3 .cards-card-image img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16/9;
+  max-height: 150px;
+  object-fit: cover;
+  margin-bottom: 0;
+}
+
+/* Card body: very tight vertical spacing */
+.cards.cards3 .cards-card-body {
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  padding: 2px 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Title: minimal gap below, bold, ellipsis if overflow */
+.cards.cards3 .cards-card-body strong {
+  color: #111;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  display: block;
+  line-height: 1.18;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.cards.cards3 .cards-card-body strong a {
+  color: #111;
+  text-decoration: none;
+}
+
+/* Description: lighter gray, minimal gap, 1-line ellipsis */
+.cards.cards3 .cards-card-body p {
+  color: #aaa;
+  font-size: 14px;
+  line-height: 1.25;
+  margin: 0;
+  padding: 0;
+  margin-top: 1px;
+  max-width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Remove <br> impact between title and description */
+.cards.cards3 .cards-card-body br {
+  display: none;
+}
+
+/* Yellow bar at the bottom left */
+.cards.cards3::after {
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 60px;
+  height: 3px;
+  background: #ffe500;
+  border-radius: 2px;
+}
+
+/* Combined and reordered selectors to avoid no-descending-specificity */
+.cards.cards3 .cards-card-body strong a, 
+.cards.cards3 .cards-card-body a {
+  color: #111;
+  text-decoration: none;
 }
