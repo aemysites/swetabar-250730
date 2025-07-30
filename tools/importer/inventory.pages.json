@@ -1,0 +1,28 @@
+{
+  "templates": [
+    {
+      "name": "Photo Gallery Template",
+      "cluster": 1,
+      "pages": [
+        {
+          "url": "https://wknd.site/us/en/faqs.html",
+          "uuid": "1afb5043e0553960631f05181289952739221d14"
+        },
+        {
+          "url": "https://wknd.site/us/en/adventures.html",
+          "uuid": "6fbce216dd3c7b02faf25398c1eaa03c8cf33519"
+        }
+      ]
+    },
+    {
+      "name": "'Travel Blog Homepage'",
+      "cluster": 2,
+      "pages": [
+        {
+          "url": "https://wknd.site/us/en.html",
+          "uuid": "c76865e01a59d1b318b0ceda7c573c315b7d1195"
+        }
+      ]
+    }
+  ]
+}

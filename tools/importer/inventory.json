@@ -1,0 +1,345 @@
+{
+  "fragments": [
+    {
+      "name": "nav",
+      "path": "/nav",
+      "totalBoxes": 1,
+      "instances": [
+        {
+          "url": "https://wknd.site/us/en/faqs.html",
+          "urlHash": "1afb5043e0553960631f05181289952739221d14",
+          "uuid": "1afb5043-00-97062599c1673bc37fcb3d7fc75a5acab9691050",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/header[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]"
+        },
+        {
+          "url": "https://wknd.site/us/en/adventures.html",
+          "urlHash": "6fbce216dd3c7b02faf25398c1eaa03c8cf33519",
+          "uuid": "6fbce216-00-97062599c1673bc37fcb3d7fc75a5acab9691050",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/header[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]"
+        },
+        {
+          "url": "https://wknd.site/us/en.html",
+          "urlHash": "c76865e01a59d1b318b0ceda7c573c315b7d1195",
+          "uuid": "c76865e0-00-97062599c1673bc37fcb3d7fc75a5acab9691050",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/header[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]"
+        }
+      ],
+      "styles": {
+        "height": 25,
+        "background": "rgb(32, 32, 32) none repeat scroll 0% 0% / auto padding-box border-box"
+      }
+    },
+    {
+      "name": "footer",
+      "path": "/footer",
+      "totalBoxes": 1,
+      "instances": [
+        {
+          "url": "https://wknd.site/us/en/faqs.html",
+          "urlHash": "1afb5043e0553960631f05181289952739221d14",
+          "uuid": "1afb5043-03-43d6b197520051945d433b3004e909ea4e3accb3",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://wknd.site/us/en/adventures.html",
+          "urlHash": "6fbce216dd3c7b02faf25398c1eaa03c8cf33519",
+          "uuid": "6fbce216-08-43d6b197520051945d433b3004e909ea4e3accb3",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/footer[1]"
+        },
+        {
+          "url": "https://wknd.site/us/en.html",
+          "urlHash": "c76865e01a59d1b318b0ceda7c573c315b7d1195",
+          "uuid": "c76865e0-14-43d6b197520051945d433b3004e909ea4e3accb3",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/footer[1]"
+        }
+      ],
+      "styles": {
+        "background": "rgb(32, 32, 32) none repeat scroll 0% 0% / auto padding-box border-box"
+      }
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Carousel",
+      "cluster": 1,
+      "source": "Carousel",
+      "target": "Carousel",
+      "key": "carousel1",
+      "instances": [
+        {
+          "url": "https://wknd.site/us/en.html",
+          "urlHash": "c76865e01a59d1b318b0ceda7c573c315b7d1195",
+          "uuid": "c76865e0-02-68c0a081f09f70a94de639d3f533d4b557f3befe",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]"
+        }
+      ]
+    },
+    {
+      "name": "Columns",
+      "cluster": 2,
+      "source": "Columns",
+      "target": "Columns (columns2)",
+      "key": "columns2",
+      "instances": [
+        {
+          "url": "https://wknd.site/us/en.html",
+          "urlHash": "c76865e01a59d1b318b0ceda7c573c315b7d1195",
+          "uuid": "c76865e0-03-e88c0a202366520df1227d177ab56ed0a7e6289c",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]"
+        }
+      ]
+    },
+    {
+      "name": "Cards",
+      "cluster": 3,
+      "source": "Cards",
+      "target": "Cards (cards3)",
+      "key": "cards3",
+      "instances": [
+        {
+          "url": "https://wknd.site/us/en.html",
+          "urlHash": "c76865e01a59d1b318b0ceda7c573c315b7d1195",
+          "uuid": "c76865e0-05-3cd3c951b17591893d25d35aded4ebe4cd3b5b4f",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[3]"
+        }
+      ]
+    },
+    {
+      "name": "Hero",
+      "cluster": 4,
+      "source": "Hero",
+      "target": "Hero (hero4)",
+      "key": "hero4",
+      "instances": [
+        {
+          "url": "https://wknd.site/us/en.html",
+          "urlHash": "c76865e01a59d1b318b0ceda7c573c315b7d1195",
+          "uuid": "c76865e0-09-9ebcaeba0ee8aa4b11cc9828f012f6f7db8ee78e",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[2]"
+        }
+      ]
+    },
+    {
+      "name": "Cards",
+      "cluster": 5,
+      "source": "Cards",
+      "target": "Cards (cards5)",
+      "key": "cards5",
+      "instances": [
+        {
+          "url": "https://wknd.site/us/en.html",
+          "urlHash": "c76865e01a59d1b318b0ceda7c573c315b7d1195",
+          "uuid": "c76865e0-11-9db6454d34483f7d59919e10da2b4e9d13ba5ba1",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/main[2]/div[1]/div[1]/div[2]"
+        }
+      ]
+    },
+    {
+      "name": "header",
+      "cluster": 6,
+      "source": "Header",
+      "target": "Header",
+      "key": "header6",
+      "instances": [
+        {
+          "url": "https://wknd.site/us/en/faqs.html",
+          "urlHash": "1afb5043e0553960631f05181289952739221d14",
+          "uuid": "1afb5043-00-97062599c1673bc37fcb3d7fc75a5acab9691050",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/header[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]",
+          "section": "section-1"
+        },
+        {
+          "url": "https://wknd.site/us/en/adventures.html",
+          "urlHash": "6fbce216dd3c7b02faf25398c1eaa03c8cf33519",
+          "uuid": "6fbce216-00-97062599c1673bc37fcb3d7fc75a5acab9691050",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/header[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]",
+          "section": "section-1"
+        },
+        {
+          "url": "https://wknd.site/us/en.html",
+          "urlHash": "c76865e01a59d1b318b0ceda7c573c315b7d1195",
+          "uuid": "c76865e0-00-97062599c1673bc37fcb3d7fc75a5acab9691050",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/header[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]",
+          "section": "section-1"
+        }
+      ]
+    },
+    {
+      "name": "Hero",
+      "cluster": 7,
+      "source": "Hero",
+      "target": "Hero (hero7)",
+      "key": "hero7",
+      "instances": [
+        {
+          "url": "https://wknd.site/us/en/adventures.html",
+          "urlHash": "6fbce216dd3c7b02faf25398c1eaa03c8cf33519",
+          "uuid": "6fbce216-03-68c0a081f09f70a94de639d3f533d4b557f3befe",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]"
+        }
+      ]
+    },
+    {
+      "name": "Cards",
+      "cluster": 8,
+      "source": "Cards",
+      "target": "Cards (cards8)",
+      "key": "cards8",
+      "instances": [
+        {
+          "url": "https://wknd.site/us/en/adventures.html",
+          "urlHash": "6fbce216dd3c7b02faf25398c1eaa03c8cf33519",
+          "uuid": "6fbce216-06-1568564b14e91d42e6e822d9f748723c819485bb",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/main[2]/div[1]/div[1]/div[2]/div[1]/div[1]"
+        }
+      ]
+    },
+    {
+      "name": "Columns",
+      "cluster": 9,
+      "source": "Columns",
+      "target": "Columns (columns9)",
+      "key": "columns9",
+      "instances": [
+        {
+          "url": "https://wknd.site/us/en/faqs.html",
+          "urlHash": "1afb5043e0553960631f05181289952739221d14",
+          "uuid": "1afb5043-01-7c33728a2204b95b0c204c62c3b77e6128cb8e79",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/header[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]"
+        },
+        {
+          "url": "https://wknd.site/us/en/adventures.html",
+          "urlHash": "6fbce216dd3c7b02faf25398c1eaa03c8cf33519",
+          "uuid": "6fbce216-01-7c33728a2204b95b0c204c62c3b77e6128cb8e79",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/header[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]"
+        },
+        {
+          "url": "https://wknd.site/us/en.html",
+          "urlHash": "c76865e01a59d1b318b0ceda7c573c315b7d1195",
+          "uuid": "c76865e0-01-7c33728a2204b95b0c204c62c3b77e6128cb8e79",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/header[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]"
+        }
+      ]
+    },
+    {
+      "name": "Accordion",
+      "cluster": 10,
+      "source": "Accordion",
+      "target": "Accordion",
+      "key": "accordion10",
+      "instances": [
+        {
+          "url": "https://wknd.site/us/en/faqs.html",
+          "urlHash": "1afb5043e0553960631f05181289952739221d14",
+          "uuid": "1afb5043-02-8508d37050d6ad651700fd3359628a43350d9ce0",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]"
+        }
+      ]
+    },
+    {
+      "name": "Columns",
+      "cluster": 11,
+      "source": "Columns",
+      "target": "Columns (columns11)",
+      "key": "columns11",
+      "instances": [
+        {
+          "url": "https://wknd.site/us/en/faqs.html",
+          "urlHash": "1afb5043e0553960631f05181289952739221d14",
+          "uuid": "1afb5043-03-43d6b197520051945d433b3004e909ea4e3accb3",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/footer[1]",
+          "section": "section-1"
+        },
+        {
+          "url": "https://wknd.site/us/en/adventures.html",
+          "urlHash": "6fbce216dd3c7b02faf25398c1eaa03c8cf33519",
+          "uuid": "6fbce216-08-43d6b197520051945d433b3004e909ea4e3accb3",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/footer[1]",
+          "section": "section-1"
+        },
+        {
+          "url": "https://wknd.site/us/en.html",
+          "urlHash": "c76865e01a59d1b318b0ceda7c573c315b7d1195",
+          "uuid": "c76865e0-14-43d6b197520051945d433b3004e909ea4e3accb3",
+          "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/footer[1]",
+          "section": "section-1"
+        }
+      ]
+    }
+  ],
+  "outliers": [
+    {
+      "url": "https://wknd.site/us/en/adventures.html",
+      "urlHash": "6fbce216dd3c7b02faf25398c1eaa03c8cf33519",
+      "uuid": "6fbce216-02-9ec213d26ff1b13c9a420c5da3c01c4eaf313d61",
+      "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/main[1]"
+    },
+    {
+      "url": "https://wknd.site/us/en/adventures.html",
+      "urlHash": "6fbce216dd3c7b02faf25398c1eaa03c8cf33519",
+      "uuid": "6fbce216-04-f9d5cc581241fa15801da165b142972f0707894a",
+      "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/main[2]/div[1]/div[1]/div[1]"
+    },
+    {
+      "url": "https://wknd.site/us/en/adventures.html",
+      "urlHash": "6fbce216dd3c7b02faf25398c1eaa03c8cf33519",
+      "uuid": "6fbce216-05-8cc3773c81f347ff4446dcd59b0c04930cb3eec8",
+      "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/main[2]/div[1]/div[1]/div[2]/div[1]/ol[1]"
+    },
+    {
+      "url": "https://wknd.site/us/en/adventures.html",
+      "urlHash": "6fbce216dd3c7b02faf25398c1eaa03c8cf33519",
+      "uuid": "6fbce216-07-863c6afd89d6ac512998fd935fe3f27367b24c76",
+      "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/main[2]/div[1]/div[1]/div[3]"
+    },
+    {
+      "url": "https://wknd.site/us/en.html",
+      "urlHash": "c76865e01a59d1b318b0ceda7c573c315b7d1195",
+      "uuid": "c76865e0-04-8ca4ec40524f72f4e525632ebb74bc0b26d5b4f8",
+      "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[2]"
+    },
+    {
+      "url": "https://wknd.site/us/en.html",
+      "urlHash": "c76865e01a59d1b318b0ceda7c573c315b7d1195",
+      "uuid": "c76865e0-06-c86b7dbafd0cf8fc2b6b75356e75aebe92629037",
+      "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[4]"
+    },
+    {
+      "url": "https://wknd.site/us/en.html",
+      "urlHash": "c76865e01a59d1b318b0ceda7c573c315b7d1195",
+      "uuid": "c76865e0-07-1811fbcb4dcecf75ec137a3947cee0f07022a643",
+      "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[5]"
+    },
+    {
+      "url": "https://wknd.site/us/en.html",
+      "urlHash": "c76865e01a59d1b318b0ceda7c573c315b7d1195",
+      "uuid": "c76865e0-08-5b54cf52a45bb02ff99635e734aacfad53056127",
+      "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[6]"
+    },
+    {
+      "url": "https://wknd.site/us/en.html",
+      "urlHash": "c76865e01a59d1b318b0ceda7c573c315b7d1195",
+      "uuid": "c76865e0-10-f9d5cc581241fa15801da165b142972f0707894a",
+      "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/main[2]/div[1]/div[1]/div[1]"
+    },
+    {
+      "url": "https://wknd.site/us/en.html",
+      "urlHash": "c76865e01a59d1b318b0ceda7c573c315b7d1195",
+      "uuid": "c76865e0-12-863c6afd89d6ac512998fd935fe3f27367b24c76",
+      "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/main[2]/div[1]/div[1]/div[3]"
+    },
+    {
+      "url": "https://wknd.site/us/en.html",
+      "urlHash": "c76865e01a59d1b318b0ceda7c573c315b7d1195",
+      "uuid": "c76865e0-13-baeb45e3744e41edb6a6437a2e5ff164ff86397f",
+      "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/main[2]/div[1]/div[1]/div[4]"
+    }
+  ],
+  "sections": [
+    {
+      "name": "section-1",
+      "background": "rgb(32, 32, 32) none repeat scroll 0% 0% / auto padding-box border-box",
+      "count": 6
+    }
+  ]
+}
