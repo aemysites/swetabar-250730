@@ -32,15 +32,12 @@
   }
 }
 
-
-/* Ensure columns block is visible and flex row is used correctly */
 .columns.columns2 {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* FLEX ROW for columns, no gap, full width */
 .columns.columns2 > div {
   display: flex;
   flex-direction: row;
@@ -53,13 +50,13 @@
   min-height: 1px;
 }
 
-/* 35% text, 65% image for desktop */
-@media (min-width: 900px) {
+@media (width >= 900px) {
   .columns.columns2 > div > div:not(.columns-img-col) {
     flex: 0 1 35%;
     max-width: 35%;
     min-width: 0;
   }
+
   .columns.columns2 > div > .columns-img-col {
     flex: 1 1 65%;
     max-width: 65%;
@@ -67,11 +64,11 @@
   }
 }
 
-/* Stack columns on smaller screens */
-@media (max-width: 899px) {
+@media (width <= 899px) {
   .columns.columns2 > div {
     flex-direction: column;
   }
+
   .columns.columns2 > div > div:not(.columns-img-col),
   .columns.columns2 > div > .columns-img-col {
     max-width: 100%;
@@ -79,7 +76,6 @@
   }
 }
 
-/* TEXT COLUMN: background, reduced padding, proper alignment */
 .columns.columns2 > div > div:not(.columns-img-col) {
   display: flex;
   flex-direction: column;
@@ -89,53 +85,46 @@
   box-sizing: border-box;
 }
 
-/* Tighter padding for mobile */
-@media (max-width: 899px) {
+@media (width <= 899px) {
   .columns.columns2 > div > div:not(.columns-img-col) {
     padding: 12px 6px 18px 8px;
   }
 }
 
-/* Remove extra top space above first element */
 .columns.columns2 > div > div:not(.columns-img-col) > div > *:first-child {
   margin-top: 0;
 }
 
-/* Typography: "Featured Article" label */
 .columns.columns2 > div > div:not(.columns-img-col) > div > p:first-child {
   font-size: 1rem;
   text-transform: uppercase;
   color: #222;
   font-weight: 600;
   letter-spacing: 0.04em;
-  margin: 0 0 6px 0;
+  margin: 0 0 6px;
   padding: 0;
 }
 
-/* Typography: Heading */
 .columns.columns2 > div > div:not(.columns-img-col) h2 {
   font-size: 2rem;
   font-family: var(--heading-font-family);
   font-weight: bold;
   color: #000;
-  margin: 0 0 12px 0;
+  margin: 0 0 12px;
   line-height: 1.15;
 }
 
-/* Description paragraph */
 .columns.columns2 > div > div:not(.columns-img-col) > div > p:not(:first-child):not(.button-container) {
   color: #444;
   font-size: 1rem;
-  margin: 0 0 16px 0;
+  margin: 0 0 16px;
   line-height: 1.6;
 }
 
-/* Spacing between blocks in the text column */
 .columns.columns2 > div > div:not(.columns-img-col) > div > *:not(:last-child) {
   margin-bottom: 12px;
 }
 
-/* BUTTON: yellow, bold, uppercase, square corners, override base style */
 .columns.columns2 .button-container .button {
   background: #ffe500;
   color: #000;
@@ -160,7 +149,6 @@
   text-decoration: underline;
 }
 
-/* IMAGE COLUMN: fills entire area */
 .columns.columns2 > div > .columns-img-col {
   display: flex;
   align-items: stretch;
@@ -175,4 +163,152 @@
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+.columns.columns9 > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 30px;
+  gap: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Logo */
+.columns.columns9 .columns-img-col {
+  margin-right: 22px;
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+}
+
+.columns.columns9 .columns-img-col img {
+  height: 28px;
+  width: auto;
+  max-width: none;
+  display: block;
+}
+
+/* Nav wrapper */
+.columns.columns9 > div > div:nth-child(2) {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 0 0 auto;
+  margin-right: 10px;
+}
+
+.columns.columns9 > div > div:nth-child(2) ul,
+.columns.columns9 > div > div:nth-child(2) ul ul,
+.columns.columns9 > div > div:nth-child(2) ul ul li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Hide "Home" */
+.columns.columns9 > div > div:nth-child(2) > ul > li > a {
+  display: none;
+}
+
+/* Nav row */
+.columns.columns9 > div > div:nth-child(2) ul ul {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: center;
+}
+
+/* Nav links */
+.columns.columns9 > div > div:nth-child(2) ul ul li a {
+  text-transform: uppercase;
+  color: #222;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  font-weight: 400;
+  font-family: var(--body-font-family);
+  background: none;
+  padding: 3px 4px;
+  border-radius: 0;
+  transition: color 0.2s, background 0.2s;
+  text-decoration: none;
+  display: inline-block;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+/* Compact highlighted FAQs link */
+.columns.columns9 > div > div:nth-child(2) ul ul li:nth-child(3) a {
+  background: #ffe600;
+  color: #000;
+  font-weight: 500;
+  padding: 3px 12px;
+  border-radius: 0;
+}
+
+/* Search box */
+.columns.columns9 > div > div:nth-child(3) {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-left: 0;
+}
+
+.columns.columns9 > div > div:nth-child(3) p {
+  background: #f5f5f5;
+  color: #b0b0b0;
+  font-size: 12px;
+  padding: 0 0 0 23px;
+  border-radius: 0;
+  margin: 0;
+  min-width: 100px;
+  max-width: 120px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  font-family: var(--body-font-family);
+  font-weight: 400;
+  box-sizing: border-box;
+  position: relative;
+  line-height: 1;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="gray" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="9" cy="9" r="7" stroke="gray" stroke-width="2" fill="none"/><line x1="16" y1="16" x2="12.5" y2="12.5" stroke="gray" stroke-width="2"/></svg>');
+  background-repeat: no-repeat;
+  background-position: 5px center;
+  background-size: 12px 12px;
+}
+
+/* Responsive: stack columns vertically on small screens */
+@media (width <= 899px) {
+  .columns.columns9 > div {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0 8px;
+    min-height: unset;
+  }
+
+  .columns.columns9 .columns-img-col {
+    margin-right: 0;
+    margin-bottom: 10px;
+    justify-content: flex-start;
+  }
+
+  .columns.columns9 > div > div:nth-child(2) {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .columns.columns9 > div > div:nth-child(2) ul ul {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .columns.columns9 > div > div:nth-child(3) {
+    margin-left: 0;
+    margin-top: 10px;
+    justify-content: flex-start;
+  }
 }
