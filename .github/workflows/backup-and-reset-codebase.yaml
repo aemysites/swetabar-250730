@@ -11,10 +11,6 @@ on:
         description: 'Root mountpoint (required)'
         required: true
         type: string
-      deletePreviewAndPublish:
-        description: 'Indicate whether the uploaded content should be deleted from preview and published.'
-        required: false
-        default: true
 
 permissions:
   issues: write
