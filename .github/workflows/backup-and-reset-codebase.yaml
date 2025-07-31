@@ -1,4 +1,4 @@
-name: Backup and Reset Codebase For Sharepoint
+name: STA - Backup and Reset
 
 on:
   workflow_dispatch:
@@ -11,6 +11,10 @@ on:
         description: 'Root mountpoint (required)'
         required: true
         type: string
+      deletePreviewAndPublish:
+        description: 'Indicate whether the uploaded content should be deleted from preview and published.'
+        required: false
+        default: true
 
 permissions:
   issues: write
@@ -41,14 +45,13 @@ jobs:
 
       - name: Set up dependencies
         run: |
-          sudo apt-get install -y yq
           cd .github/actions/sta-mountpoint
           npm install
           cd ../sta-azure-helper
           npm install
           cd ../sta-sp-move-to-backup
           npm install
-          cd ../sta-sp-delete
+          cd ../sta-aem-helper
           npm install
 
       - name: Create Azure Access Token
@@ -80,14 +83,15 @@ jobs:
         env:
           GITHUB_REPOSITORY: ${{ github.repository }}
 
-      - name: Delete SharePoint previews
+      - name: Delete SharePoint previews and publish
         id: delete-previews
-        uses: ./.github/actions/sta-sp-delete
+        uses: ./.github/actions/sta-aem-helper
         with:
           context: |
             {"project": {"owner": "${{ github.repository_owner }}", "repo": "${{ github.event.repository.name }}", "branch": "main"}}
           urls: ${{ steps.filter_urls.outputs.urls }}
-
+          operation: ${{ github.events.inputs.deletePreviewAndPublish == 'true' && 'previewAndPublish' || 'preview' }}
+          action: ${{ 'DELETE' }}
 
       - name: Parse mountpoint
         id: mountpoint_data

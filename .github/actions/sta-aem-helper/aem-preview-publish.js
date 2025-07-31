@@ -72,9 +72,10 @@ const fixPathForHelix = (filePath, force = false) => {
  * @param {string} apiEndpoint - The API endpoint to call.
  * @param {string} pagePath - The page path to preview or publish. /some/page.docx
  * @param {string} token - The DA access token.
+ * @param {string} method - The method to perform. Could be 'POST' or 'DELETE'.
  * @returns {Promise<boolean>} - Returns true if successful, false otherwise.
  */
-async function performPreviewPublish(apiEndpoint, pagePath, token) {
+async function performPreviewPublish(apiEndpoint, pagePath, token, method) {
   const action = new URL(apiEndpoint)
     .pathname
     .startsWith('/preview/')
@@ -93,8 +94,14 @@ async function performPreviewPublish(apiEndpoint, pagePath, token) {
       headers.Authorization = `Bearer ${token}`;
     }
 
+    if (!method) {
+      method = 'POST';
+    }
+
+    core.info(`method: ${method}`);
+
     const resp = await fetch(`${apiEndpoint}${page}`, {
-      method: 'POST',
+      method,
       body: '{}',
       headers,
     });
@@ -145,11 +152,12 @@ async function performPreviewPublish(apiEndpoint, pagePath, token) {
  *
  * @param {string} pages - The URLs to preview or publish.
  * @param {string} operation - The operation to perform.
+ * @param {string} method - The method to perform. Could be 'POST' or 'DELETE'.
  * @param {string} context - The AEMY context.
  * @param {string} token - The DA access token.
  * @throws {Error} - If the operation fails.
  */
-export async function doPreviewPublish(pages, operation, context, token) {
+export async function doPreviewPublish(pages, operation, context, token, method) {
   const { project } = JSON.parse(context);
   const { owner, repo, branch = 'main' } = project;
 
@@ -174,7 +182,7 @@ export async function doPreviewPublish(pages, operation, context, token) {
     const action = [i === 0 ? HELIX_API_PREFIX.PREVIEW : HELIX_API_PREFIX.LIVE];
     const apiEndpoint = `${HELIX_ENDPOINT}/${action}/${owner}/${repo}/${branch}`;
     for (const page of pages) {
-      const result = await performPreviewPublish(apiEndpoint, page, token);
+      const result = await performPreviewPublish(apiEndpoint, page, token, method);
       if (result) {
         report.successes += 1;
       } else {
