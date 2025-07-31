@@ -98,8 +98,8 @@ jobs:
           context: |
             {"project": {"owner": "${{ github.repository_owner }}", "repo": "${{ github.event.repository.name }}", "branch": "main"}}
           pages: ${{ steps.convert_urls_to_paths.outputs.paths }}
-          operation: ${{ github.events.inputs.deletePreviewAndPublish == 'true' && 'previewAndPublish' || 'preview' }}
-          method: ${{ github.events.inputs.deletePreviewAndPublish == 'true' && 'DELETE' }}
+          operation: ${{ github.events.inputs.deletePreviewAndPublish == 'true' ? 'previewAndPublish' : 'preview' }}
+          method: ${{ github.event.inputs.deletePreviewAndPublish == 'true' ? 'DELETE' : undefined }}
 
       - name: Parse mountpoint
         id: mountpoint_data
