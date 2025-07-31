@@ -204,6 +204,7 @@ async function doFetchAccessToken(credentialsPath) {
 async function run() {
   try {
     const operation = core.getInput('operation');
+    const method = core.getInput('method');
 
     if (operation === AEM_HELPER_OPERATIONS.FETCH_ACCESS_TOKEN) {
       const credentialsPath = core.getInput('credentials_path');
@@ -215,7 +216,7 @@ async function run() {
       const pages = JSON.parse(pagesInput);
 
       const token = process.env.IMS_TOKEN;
-      await doPreviewPublish(pages, operation, context, token);
+      await doPreviewPublish(pages, operation, context, token, method);
     } else {
       throw new Error(`Unknown AEM helper operation: ${operation}`);
     }
