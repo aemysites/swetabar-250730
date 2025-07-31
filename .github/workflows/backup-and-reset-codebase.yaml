@@ -99,7 +99,7 @@ jobs:
             {"project": {"owner": "${{ github.repository_owner }}", "repo": "${{ github.event.repository.name }}", "branch": "main"}}
           pages: ${{ steps.convert_urls_to_paths.outputs.paths }}
           operation: ${{ github.events.inputs.deletePreviewAndPublish == 'true' ? 'previewAndPublish' : 'preview' }}
-          method: ${{ github.event.inputs.deletePreviewAndPublish == 'true' ? 'DELETE' : undefined }}
+          method: ${{ github.event.inputs.deletePreviewAndPublish == 'true' ? 'DELETE' : '' }}
 
       - name: Parse mountpoint
         id: mountpoint_data
