@@ -1,0 +1,29 @@
+{
+  "originUrl": "https://wknd.site",
+  "urls": [
+    {
+      "url": "https://wknd.site/us/en.html",
+      "source": "MANUAL",
+      "targetPath": "/us/en",
+      "id": "c76865e01a59d1b318b0ceda7c573c315b7d1195"
+    },
+    {
+      "url": "https://wknd.site/us/en/adventures.html",
+      "source": "MANUAL",
+      "targetPath": "/us/en/adventures",
+      "id": "6fbce216dd3c7b02faf25398c1eaa03c8cf33519"
+    },
+    {
+      "url": "https://wknd.site/us/en/faqs.html",
+      "source": "MANUAL",
+      "targetPath": "/us/en/faqs",
+      "id": "1afb5043e0553960631f05181289952739221d14"
+    }
+  ],
+  "crawlOptions": {
+    "strategy": "manual",
+    "strategiesAttempted": [
+      "MANUAL"
+    ]
+  }
+}
