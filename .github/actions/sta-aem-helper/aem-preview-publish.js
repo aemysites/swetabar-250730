@@ -98,8 +98,6 @@ async function performPreviewPublish(apiEndpoint, pagePath, token, method) {
       method = 'POST';
     }
 
-    core.info(`method: ${method}`);
-
     const resp = await fetch(`${apiEndpoint}${page}`, {
       method,
       body: '{}',
@@ -133,13 +131,13 @@ async function performPreviewPublish(apiEndpoint, pagePath, token, method) {
     }
 
     if (action === HELIX_API_PREFIX.PREVIEW) {
-      core.info(`✓ Preview success: for ${apiEndpoint}${page}`);
+      core.info(`✓ ${method} Preview success: for ${apiEndpoint}${page}`);
     } else {
-      core.info(`✓ Publish success: for ${apiEndpoint}${page}`);
+      core.info(`✓ ${method} Publish success: for ${apiEndpoint}${page}`);
     }
     return true;
   } catch (error) {
-    core.warning(`❌ Operation call failed on ${page}: ${error.message}`);
+    core.warning(`❌ ${method} Operation call failed on ${page} : ${error.message}`);
   }
 
   return false;
