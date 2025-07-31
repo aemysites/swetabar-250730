@@ -83,15 +83,23 @@ jobs:
         env:
           GITHUB_REPOSITORY: ${{ github.repository }}
 
+      - name: Convert URLs to paths array
+        id: convert_urls_to_paths
+        run: |
+          urls="${{ steps.filter_urls.outputs.urls }}"
+          # Split, trim, and join as JSON array
+          paths=$(echo "$urls" | awk -F, '{for(i=1;i<=NF;i++){gsub(/^ +| +$/,"",$i); printf "\"%s\"%s", $i, (i<NF?",":"")}}')
+          echo "paths=[$paths]" >> $GITHUB_OUTPUT
+
       - name: Delete SharePoint previews and publish
         id: delete-previews
         uses: ./.github/actions/sta-aem-helper
         with:
           context: |
             {"project": {"owner": "${{ github.repository_owner }}", "repo": "${{ github.event.repository.name }}", "branch": "main"}}
-          urls: ${{ steps.filter_urls.outputs.urls }}
+          pages: ${{ steps.convert_urls_to_paths.outputs.paths }}
           operation: ${{ github.events.inputs.deletePreviewAndPublish == 'true' && 'previewAndPublish' || 'preview' }}
-          action: ${{ github.events.inputs.deletePreviewAndPublish == 'true' && 'DELETE' }}
+          method: ${{ github.events.inputs.deletePreviewAndPublish == 'true' && 'DELETE' }}
 
       - name: Parse mountpoint
         id: mountpoint_data
