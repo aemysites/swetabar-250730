@@ -11,6 +11,8 @@ inputs:
     description: "The pages to preview or publish (/index.html, /a/file.xlsx)."
   context:
     description: "The AEMY context."
+  method:
+    description: "The method to perform. Could be 'POST' or 'DELETE'."
 outputs:
   access_token:
     description: "The access token for AEM"
