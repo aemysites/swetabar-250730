@@ -129,6 +129,6 @@ jobs:
         uses: ./.github/actions/sta-sp-move-to-backup
         with:
           token: ${{ steps.azure-auth.outputs.access_token }}
-          sp_host: ${{ fromJSON(steps.mountpoint_data.outputs.data).host }}
-          sp_site_path: ${{ fromJSON(steps.mountpoint_data.outputs.data).site }}
-          sp_folder_path: ${{ fromJSON(steps.mountpoint_data.outputs.data).path }}
+          host: ${{ fromJSON(steps.mountpoint_data.outputs.data).host }}
+          site_path: ${{ fromJSON(steps.mountpoint_data.outputs.data).site }}
+          folder_path: ${{ fromJSON(steps.mountpoint_data.outputs.data).path }}
