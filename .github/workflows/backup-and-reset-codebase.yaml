@@ -90,8 +90,7 @@ jobs:
           context: |
             {"project": {"owner": "${{ github.repository_owner }}", "repo": "${{ github.event.repository.name }}", "branch": "main"}}
           pages: ${{ steps.convert_urls_to_paths.outputs.paths }}
-          operation: previewAndPublish
-          method: DELETE
+          operation: deletePreviewAndPublish
 
       - name: Parse mountpoint
         id: mountpoint_data
@@ -112,17 +111,17 @@ jobs:
           git push origin $BRANCH_NAME
           echo "branch_name=$BRANCH_NAME" >> $GITHUB_OUTPUT
 
-      - name: Ensure INITIAL_RESET_COMMIT secret is set
+      - name: Ensure RESET_COMMIT_SHA secret is set
         run: |
-          if [ -z "${{ secrets.INITIAL_RESET_COMMIT }}" ]; then
-            echo "❌ The secret INITIAL_RESET_COMMIT is not set in your repository."
+          if [ -z "${{ secrets.RESET_COMMIT_SHA }}" ]; then
+            echo "❌ The secret RESET_COMMIT_SHA is not set in your repository."
             exit 1
           fi
 
       - name: Reset main to specified commit
         run: |
           git checkout main
-          git reset --hard ${{ secrets.INITIAL_RESET_COMMIT }}
+          git reset --hard ${{ secrets.RESET_COMMIT_SHA }}
           git push origin main --force
 
       - name: Move SharePoint content to backup folder

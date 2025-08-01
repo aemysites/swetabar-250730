@@ -5,13 +5,13 @@ inputs:
   token:
     description: "The SP access token"
     required: true
-  sp_host:
+  host:
     description: "The host of SharePoint (i.e. adobe.sharepoint.com)"
     required: true
-  sp_site_path:
+  site_path:
     description: "The site path to the SharePoint site (i.e. /sites/AEMDemos)"
     required: true
-  sp_folder_path:
+  folder_path:
     description: "The folder path to move files from (i.e. /Shared%20Documents/sites/my-site)"
     required: true
 outputs:

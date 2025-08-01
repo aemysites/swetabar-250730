@@ -89,12 +89,12 @@ async function moveItem(token, driveId, itemId, destFolderId) {
 export async function run() {
   try {
     const token = core.getInput('token');
-    const spHost = core.getInput('sp_host');
-    const spSitePath = core.getInput('sp_site_path');
-    const spFolderPath = core.getInput('sp_folder_path');
+    const host = core.getInput('host');
+    const sitePath = core.getInput('site_path');
+    const folderPath = core.getInput('folder_path');
     // 1. Get site ID
     // eslint-disable-next-line max-len
-    const siteEndpoint = `/sites/${spHost}:/sites/${spSitePath}`;
+    const siteEndpoint = `/sites/${host}:/sites/${sitePath}`;
     const site = await graphFetch(
       token,
       siteEndpoint,
@@ -102,14 +102,14 @@ export async function run() {
     const siteId = site.id;
     // 2. Get drive ID
     const drives = await graphFetch(token, `/sites/${siteId}/drives`);
-    const rootDrive = spFolderPath.split('/').shift();
+    const rootDrive = folderPath.split('/').shift();
     let driveId = drives.value.find((dr) => dr.name === rootDrive)?.id;
     if (!driveId && drives.value.length === 1) driveId = drives.value[0].id;
     if (!driveId) throw new Error('Drive ID not found');
     // 3. Get folder ID
     let folderId = 'root';
-    if (spFolderPath && spFolderPath !== rootDrive) {
-      const segments = spFolderPath.split('/').filter(Boolean);
+    if (folderPath && folderPath !== rootDrive) {
+      const segments = folderPath.split('/').filter(Boolean);
       let currentId = 'root';
       for (let i = 1; i < segments.length; i += 1) {
         const seg = segments[i];

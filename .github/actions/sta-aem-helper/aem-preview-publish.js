@@ -13,7 +13,7 @@
 import core from '@actions/core';
 import path from 'path';
 
-import { AEM_HELPER_OPERATIONS } from './sta-aem-helper-constants.js';
+import { AEM_HELPER_OPERATIONS, AEM_HELPER_METHODS } from './sta-aem-helper-constants.js';
 
 /**
  * The publish or preview endpoint prefix for the HLX Admin API.
@@ -95,7 +95,7 @@ async function performPreviewPublish(apiEndpoint, pagePath, token, method) {
     }
 
     const resp = await fetch(`${apiEndpoint}${page}`, {
-      method: method || AEM_HELPER_OPERATIONS.POST,
+      method: method || AEM_HELPER_METHODS.POST,
       body: '{}',
       headers,
     });
@@ -146,12 +146,11 @@ async function performPreviewPublish(apiEndpoint, pagePath, token, method) {
  *
  * @param {string} pages - The URLs to preview or publish.
  * @param {string} operation - The operation to perform.
- * @param {string} method - The method to perform. Could be 'POST' or 'DELETE'.
  * @param {string} context - The AEMY context.
  * @param {string} token - The DA access token.
  * @throws {Error} - If the operation fails.
  */
-export async function doPreviewPublish(pages, operation, context, token, method) {
+export async function doPreviewPublish(pages, operation, context, token) {
   const { project } = JSON.parse(context);
   const { owner, repo, branch = 'main' } = project;
 
@@ -176,7 +175,7 @@ export async function doPreviewPublish(pages, operation, context, token, method)
     const action = [i === 0 ? HELIX_API_PREFIX.PREVIEW : HELIX_API_PREFIX.LIVE];
     const apiEndpoint = `${HELIX_ENDPOINT}/${action}/${owner}/${repo}/${branch}`;
     for (const page of pages) {
-      const result = await performPreviewPublish(apiEndpoint, page, token, method);
+      const result = await performPreviewPublish(apiEndpoint, page, token);
       if (result) {
         report.successes += 1;
       } else {
@@ -196,5 +195,66 @@ export async function doPreviewPublish(pages, operation, context, token, method)
   } else if (((operation === AEM_HELPER_OPERATIONS.PREVIEW_AND_PUBLISH ? 2 : 1) * pages.length) !== report.successes) {
     core.warning(`❌ The paths that failed are: ${JSON.stringify(report.failureList, undefined, 2)}`);
     core.setOutput('error_message', `❌ Error: Failed to ${getOperationName(operation)} all of the paths.`);
+  }
+}
+
+/**
+ * Performs the delete preview and publish operation for the provided pages.
+ * Pages are expected to be an array of strings in the format of ['/index.html', '/a/file.xlsx']
+ * The operation is expected to be one of the OPERATIONS constants.
+ *
+ * @param {string[]} pages - The URLs to delete preview and publish for.
+ * @param {string} operation - The operation to perform.
+ * @param {string} context - The AEMY context.
+ * @param {string} token - The DA access token.
+ * @throws {Error} - If the operation fails.
+ */
+export async function deletePreviewPublish(pages, operation, context, token) {
+  const { project } = JSON.parse(context);
+  const { owner, repo, branch = 'main' } = project;
+
+  if (!owner || !repo) {
+    throw new Error('Invalid context format: missing owner or repo.');
+  }
+
+  // keep track of the number of successes and failures
+  const report = {
+    successes: 0,
+    failures: 0,
+    failureList: {
+      preview: [],
+      publish: [],
+    },
+  };
+
+  // Loop for preview and publish
+  const actions = [HELIX_API_PREFIX.PREVIEW, HELIX_API_PREFIX.LIVE];
+  for (const action of actions) {
+    const apiEndpoint = `${HELIX_ENDPOINT}/${action}/${owner}/${repo}/${branch}`;
+    for (const page of pages) {
+      const result = await performPreviewPublish(
+        apiEndpoint,
+        page,
+        token,
+        AEM_HELPER_METHODS.DELETE,
+      );
+      if (result) {
+        report.successes += 1;
+      } else {
+        report.failures += 1;
+        report.failureList[action].push(page);
+      }
+    }
+  }
+
+  core.setOutput('successes', report.successes);
+  core.setOutput('failures', report.failures);
+
+  if (report.failures > 0) {
+    core.warning(`❌ The pages that failed are: ${JSON.stringify(report.failureList, undefined, 2)}`);
+    core.setOutput('error_message', `❌ Error: Failed to delete preview and publish for ${report.failures} of ${pages.length * 2} pages.`);
+  } else if ((pages.length * 2) !== report.successes) {
+    core.warning(`❌ The paths that failed are: ${JSON.stringify(report.failureList, undefined, 2)}`);
+    core.setOutput('error_message', '❌ Error: Failed to delete preview and publish for all of the paths.');
   }
 }
