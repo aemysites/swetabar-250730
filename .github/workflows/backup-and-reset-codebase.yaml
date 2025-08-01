@@ -12,10 +12,6 @@ on:
         required: true
         type: string
 
-permissions:
-  issues: write
-  contents: write
-
 env:
   AZURE_TENANT_ID: ${{ vars.AZURE_TENANT_ID }}
   AZURE_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
@@ -94,8 +90,8 @@ jobs:
           context: |
             {"project": {"owner": "${{ github.repository_owner }}", "repo": "${{ github.event.repository.name }}", "branch": "main"}}
           pages: ${{ steps.convert_urls_to_paths.outputs.paths }}
-          operation: ${{ 'previewAndPublish' }}
-          method: ${{ 'DELETE' }}
+          operation: previewAndPublish
+          method: DELETE
 
       - name: Parse mountpoint
         id: mountpoint_data
@@ -115,6 +111,13 @@ jobs:
           git checkout -b $BRANCH_NAME
           git push origin $BRANCH_NAME
           echo "branch_name=$BRANCH_NAME" >> $GITHUB_OUTPUT
+
+      - name: Ensure INITIAL_RESET_COMMIT secret is set
+        run: |
+          if [ -z "${{ secrets.INITIAL_RESET_COMMIT }}" ]; then
+            echo "❌ The secret INITIAL_RESET_COMMIT is not set in your repository."
+            exit 1
+          fi
 
       - name: Reset main to specified commit
         run: |

@@ -94,12 +94,8 @@ async function performPreviewPublish(apiEndpoint, pagePath, token, method) {
       headers.Authorization = `Bearer ${token}`;
     }
 
-    if (!method) {
-      method = 'POST';
-    }
-
     const resp = await fetch(`${apiEndpoint}${page}`, {
-      method,
+      method: method || AEM_HELPER_OPERATIONS.POST,
       body: '{}',
       headers,
     });
@@ -137,7 +133,7 @@ async function performPreviewPublish(apiEndpoint, pagePath, token, method) {
     }
     return true;
   } catch (error) {
-    core.warning(`❌ ${method} Operation call failed on ${page} : ${error.message}`);
+    core.warning(`❌ ${method} Operation call failed on ${page}: ${error.message}`);
   }
 
   return false;
