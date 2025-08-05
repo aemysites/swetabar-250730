@@ -23,6 +23,13 @@ jobs:
   backup-and-reset:
     runs-on: ubuntu-latest
     steps:
+      - name: Ensure WORKFLOW_PAT secret is set
+        run: |
+          if [ -z "${{ secrets.WORKFLOW_PAT }}" ]; then
+            echo "❌ The secret WORKFLOW_PAT is not set in your repository."
+            exit 1
+          fi
+
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
@@ -129,6 +136,6 @@ jobs:
         uses: ./.github/actions/sta-sp-move-to-backup
         with:
           token: ${{ steps.azure-auth.outputs.access_token }}
-          host: ${{ fromJSON(steps.mountpoint_data.outputs.data).host }}
-          site_path: ${{ fromJSON(steps.mountpoint_data.outputs.data).site }}
-          folder_path: ${{ fromJSON(steps.mountpoint_data.outputs.data).path }}
+          sp_host: ${{ fromJSON(steps.mountpoint_data.outputs.data).host }}
+          sp_site_path: ${{ fromJSON(steps.mountpoint_data.outputs.data).site }}
+          sp_folder_path: ${{ fromJSON(steps.mountpoint_data.outputs.data).path }}

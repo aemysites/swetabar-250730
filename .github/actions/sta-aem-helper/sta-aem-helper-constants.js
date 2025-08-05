@@ -19,8 +19,3 @@ export const AEM_HELPER_OPERATIONS = Object.freeze({
   PREVIEW_AND_PUBLISH: 'previewAndPublish',
   DELETE_PREVIEW_AND_PUBLISH: 'deletePreviewAndPublish',
 });
-
-export const AEM_HELPER_METHODS = Object.freeze({
-  POST: 'POST',
-  DELETE: 'DELETE',
-});
