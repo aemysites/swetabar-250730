@@ -219,7 +219,7 @@ async function run() {
       const token = process.env.IMS_TOKEN;
 
       if (operation === AEM_HELPER_OPERATIONS.DELETE_PREVIEW_AND_PUBLISH) {
-        await deletePreviewPublish(pages, operation, context, token);
+        await deletePreviewPublish(pages, context, token);
       } else {
         await doPreviewPublish(pages, operation, context, token);
       }
