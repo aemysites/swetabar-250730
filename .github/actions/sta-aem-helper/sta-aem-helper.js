@@ -184,19 +184,22 @@ async function doFetchAccessToken(credentialsPath) {
 * Depending on the provided operation, different outputs are set:
 * All operations can set the error_message output.
 *
-* |---------------------------------------------------------------------|
-* | operation          | output                                         |
-* |---------------------------------------------------------------------|
-* | fetch-access-token | access_token                                   |
-* |---------------------------------------------------------------------|
-* | preview            | successes - number of successful operations    |
-* |                    | failures - number of failures                  |
-* |---------------------------------------------------------------------|
-* | previewAndPublish  | successes - number of successful operations    |
-* |                    | failures - number of failures                  |
-* |---------------------------------------------------------------------|
-* |  *                 | error_message - string describing the error    |
-* |---------------------------------------------------------------------|
+* |--------------------------------------------------------------------------|
+* | operation               | output                                         |
+* |--------------------------------------------------------------------------|
+* | fetch-access-token      | access_token                                   |
+* |--------------------------------------------------------------------------|
+* | preview                 | successes - number of successful operations    |
+* |                         | failures - number of failures                  |
+* |--------------------------------------------------------------------------|
+* | previewAndPublish       | successes - number of successful operations    |
+* |                         | failures - number of failures                  |
+* |--------------------------------------------------------------------------|
+* | deletePreviewAndPublish | successes - number of successful operations    |
+* |                         | failures - number of failures                  |
+* |--------------------------------------------------------------------------|
+* |  *                      | error_message - string describing the error    |
+* |--------------------------------------------------------------------------|
 *
 * If the operation is unknown, an error is thrown.
 * @returns {Promise<void>}

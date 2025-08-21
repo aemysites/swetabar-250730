@@ -5,8 +5,11 @@ description: |
   The action is triggered by a workflow dispatch event with inputs as follows.
 
 env:
-  IMS_TOKEN: ${{ secrets.IMS_TOKEN }}
+  DA_CLIENT_ID: ${{ secrets.DA_CLIENT_ID }}
+  DA_CLIENT_SECRET: ${{ secrets.DA_CLIENT_SECRET }}
+  DA_SERVICE_TOKEN: ${{ secrets.DA_SERVICE_TOKEN }}
   AEMY_API_KEY: ${{ secrets.AEMY_API_KEY }}
+  IMS_TOKEN: ${{ secrets.IMS_TOKEN }}
 on:
   workflow_dispatch:
     inputs:
@@ -57,10 +60,18 @@ jobs:
             echo "ACTION_URL=$ACTION_URL" >> $GITHUB_ENV
           fi
           
-          # Ensure the secret was set, and was set in the env variable properly.
+          # Ensure the secrets were set, and were set in the env variables properly.
           if [ -z "${{ env.AEMY_API_KEY }}" ]; then
             errorMessage="❌ The following secret is not set in your GitHub repo: JS_LF- AEMY_API_KEY JS_LF"
             echo "errorMessage=$errorMessage" >> $GITHUB_ENV
+          fi
+          
+          if [ -z "${{ env.IMS_TOKEN }}" ]; then
+            echo "⚠️ IMS_TOKEN not set."
+          fi
+
+          if [ -z "${{ env.DA_CLIENT_ID }}" ] || [ -z "${{ env.DA_CLIENT_SECRET }}" ] || [ -z "${{ env.DA_SERVICE_TOKEN }}" ]; then
+            echo "⚠️ DA IMS client credentials are not set (DA_CLIENT_ID, DA_CLIENT_SECRET, DA_SERVICE_TOKEN)."
           fi
 
           total_steps=2
@@ -99,7 +110,7 @@ jobs:
         if: ${{ env.errorMessage != '' }}
         uses: ./.github/actions/sta-status
         with:
-          callback_urls: ${{ github.event.inputs.aemy_callbacks_urls }}
+          callback_urls: ${{ github.event.inputs.aemy_callback_urls }}
           context: ${{ github.event.inputs.aemy_context }}
           message: ${{ env.errorMessage }}
           status_type: error
@@ -108,7 +119,7 @@ jobs:
       - name: '[Progress] Downloading and extracting zip file'
         uses: ./.github/actions/sta-status
         with:
-          callback_urls: ${{ github.event.inputs.aemy_callbacks_urls }}
+          callback_urls: ${{ github.event.inputs.aemy_callback_urls }}
           context: ${{ github.event.inputs.aemy_context }}
           message: Downloading and extracting content from zip... (Step 1 of ${{ env.total_steps }}) ${{ env.ACTION_URL }}
           status_type: progress
@@ -124,7 +135,7 @@ jobs:
         if: ${{ steps.download-zip.outputs.error_message != '' }}
         uses: ./.github/actions/sta-status
         with:
-          callback_urls: ${{ github.event.inputs.aemy_callbacks_urls }}
+          callback_urls: ${{ github.event.inputs.aemy_callback_urls }}
           context: ${{ github.event.inputs.aemy_context }}
           message: ${{ steps.download-zip.outputs.error_message }} ${{ env.ACTION_URL }}
           status_type: error
@@ -133,7 +144,7 @@ jobs:
       - name: '[Progress] Uploading pages to DA'
         uses: ./.github/actions/sta-status
         with:
-          callback_urls: ${{ github.event.inputs.aemy_callbacks_urls }}
+          callback_urls: ${{ github.event.inputs.aemy_callback_urls }}
           context: ${{ github.event.inputs.aemy_context }}
           message: Zip extracted with ${{ steps.download-zip.outputs.file_count }} files. (Step 2 of ${{ env.total_steps }}).
           status_type: progress
@@ -152,7 +163,7 @@ jobs:
         if: ${{ steps.da-upload-step.outputs.error_message != '' }}
         uses: ./.github/actions/sta-status
         with:
-          callback_urls: ${{ github.event.inputs.aemy_callbacks_urls }}
+          callback_urls: ${{ github.event.inputs.aemy_callback_urls }}
           context: ${{ github.event.inputs.aemy_context }}
           message: ${{ steps.da-upload-step.outputs.error_message }} ${{ env.ACTION_URL }} 
           status_type: error
