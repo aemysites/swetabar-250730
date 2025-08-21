@@ -80,7 +80,7 @@ const fixPathForHelix = (filePath, force = false) => {
  * @param {string} method - The method to perform. Could be 'POST' or 'DELETE'.
  * @returns {Promise<boolean>} - Returns true if successful, false otherwise.
  */
-async function performPreviewPublish(apiEndpoint, pagePath, token, method) {
+async function performPreviewPublish(apiEndpoint, pagePath, token, method = HTTP_METHODS.POST) {
   const action = new URL(apiEndpoint)
     .pathname
     .startsWith('/preview/')
@@ -100,7 +100,7 @@ async function performPreviewPublish(apiEndpoint, pagePath, token, method) {
     }
 
     const resp = await fetch(`${apiEndpoint}${page}`, {
-      method: method || HTTP_METHODS.POST,
+      method,
       body: '{}',
       headers,
     });
@@ -206,7 +206,6 @@ export async function doPreviewPublish(pages, operation, context, token) {
 /**
  * Performs the delete preview and publish operation for the provided pages.
  * Pages are expected to be an array of strings in the format of ['/index.html', '/a/file.xlsx']
- * The operation is expected to be one of the OPERATIONS constants.
  *
  * @param {string[]} pages - The URLs to delete preview and publish for.
  * @param {string} context - The AEMY context.

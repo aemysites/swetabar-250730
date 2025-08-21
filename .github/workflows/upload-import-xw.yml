@@ -58,8 +58,8 @@ jobs:
           if [ -z "${{ env.AEMY_API_KEY }}" ]; then
             missing_vars+="JS_LF- AEMY_API_KEY "
           fi
-          if [ -z "${{ secrets.AEM_SERVICE_CREDENTIALS_JSON }}" ]; then
-            missing_vars+="JS_LF- AEM_SERVICE_CREDENTIALS_JSON "
+          if [ -z "${{ secrets.AEM_SERVICE_CREDENTIALS }}" ]; then
+            missing_vars+="JS_LF- AEM_SERVICE_CREDENTIALS "
           fi
           if [ -n "$missing_vars" ]; then
             errorMessage="❌ The following variables or secrets are not set in your GitHub repo: $missing_vars JS_LF"
@@ -156,7 +156,7 @@ jobs:
 
       - name: Write service credentials to file
         run: |
-          echo "${{ secrets.AEM_SERVICE_CREDENTIALS_JSON }}" | base64 --decode > service-credentials.json
+          echo "${{ secrets.AEM_SERVICE_CREDENTIALS }}" | base64 --decode > service-credentials.json
 
       - name: Get access token for AEM
         id: get-access-token-for-aem

@@ -127,8 +127,12 @@ export async function run() {
     // 6. Move items except 'tools' and 'block-collection'
     for (const item of items) {
       if (!['tools', 'block-collection'].includes(item.name)) {
-        await moveItem(token, driveId, item.id, backup.id);
-        core.info(`Moved ${item.name} to ${backup.name}`);
+        try {
+          await moveItem(token, driveId, item.id, backup.id);
+          core.info(`Moved ${item.name} to ${backup.name}`);
+        } catch (err) {
+          core.warning(`Failed to move ${item.name} to ${backup.name}: ${err.message}`);
+        }
       }
     }
     core.setOutput('backup_folder_name', backup.name);

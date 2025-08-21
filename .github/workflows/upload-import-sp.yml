@@ -288,6 +288,16 @@ jobs:
           zip_contents_path: ${{ steps.download-zip.outputs.zip_contents_path }}
           delay: '2000'
 
+      - name: '[Check] Upload to SharePoint (execution errors)'
+        if: ${{ steps.upload-sharepoint.outputs.error_message != '' }}
+        uses: ./.github/actions/sta-status
+        with:
+          callback_urls: ${{ github.event.inputs.aemy_callback_urls }}
+          context: ${{ github.event.inputs.aemy_context }}
+          message: Upload Failed. ${{ steps.upload-sharepoint.outputs.error_message }} ${{ env.ACTION_URL }}
+          status_type: error
+          agent_name: upload-import-sp
+
       - name: '[Report] SharePoint Upload results'
         run: |
           echo "Successes: ${{ steps.upload-sharepoint.outputs.upload_successes }}"
@@ -297,9 +307,9 @@ jobs:
           
           if [ "${{ steps.upload-sharepoint.outputs.upload_failures }}" != "0" ]; then
             if [ "${{ steps.upload-sharepoint.outputs.upload_failed_locked }}" != "0" ]; then
-              message="Failed to upload ${{ steps.upload-sharepoint.outputs.upload_failures }} file(s), ${{ steps.upload-sharepoint.outputs.upload_failed_locked }} of which were locked on SharePoint (HINT: If you have these files open for editing, close them and try again.)JS_LFUploaded ${{ steps.upload-sharepoint.outputs.upload_successes }} files successfully. ${{ env.ACTION_URL }}"
+              message="Failed to upload ${{ steps.upload-sharepoint.outputs.upload_failures }} file(s), ${{ steps.upload-sharepoint.outputs.upload_failed_locked }} of which were locked on SharePoint (HINT: If you have these files open for editing, close them and try again.)JS_LFUploaded ${{ steps.upload-sharepoint.outputs.upload_successes }} files successfully."
             else
-              message="Failed to upload ${{ steps.upload-sharepoint.outputs.upload_failures }} file(s).JS_LFUploaded ${{ steps.upload-sharepoint.outputs.upload_successes }} files successfully. ${{ env.ACTION_URL }}"
+              message="Failed to upload ${{ steps.upload-sharepoint.outputs.upload_failures }} file(s).JS_LFUploaded ${{ steps.upload-sharepoint.outputs.upload_successes }} files successfully."
             fi
             echo "errorMessage=$message" >> $GITHUB_ENV
           fi
