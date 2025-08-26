@@ -1,5 +1,5 @@
 name: "Upload DA"
-description: "Upload the content to DA"
+description: "Upload the content to DA using IMS token exchange for authentication"
 author: "Experience Catalyst"
 inputs:
   target:
@@ -11,14 +11,16 @@ inputs:
   skip_assets:
     description: "Whether to skip assets"
     required: false
-    default: false
+    default: 'false'
   operation:
     description: "The operation to perform"
     required: false
-    default: upload
+    default: 'upload'
 outputs:
   paths:
     description: "The list of paths that were uploaded"
+  error_message:
+    description: "Error message if the operation failed"
 runs:
   using: 'node20'
   main: 'sta-da-helper.js'
