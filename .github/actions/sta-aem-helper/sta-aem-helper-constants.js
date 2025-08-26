@@ -17,4 +17,5 @@ export const AEM_HELPER_OPERATIONS = Object.freeze({
   FETCH_ACCESS_TOKEN: 'fetch-access-token',
   PREVIEW_PAGES: 'preview',
   PREVIEW_AND_PUBLISH: 'previewAndPublish',
+  DELETE_PREVIEW_AND_PUBLISH: 'deletePreviewAndPublish',
 });

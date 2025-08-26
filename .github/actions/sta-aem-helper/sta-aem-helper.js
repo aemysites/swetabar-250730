@@ -14,7 +14,7 @@ import core from '@actions/core';
 import fs from 'fs';
 import jwt from 'jsonwebtoken';
 import { AEM_HELPER_OPERATIONS } from './sta-aem-helper-constants.js';
-import { doPreviewPublish } from './aem-preview-publish.js';
+import { doPreviewPublish, deletePreviewPublish } from './aem-preview-publish.js';
 
 /**
  * Fetches an Adobe IMS access token using JWT authentication.
@@ -184,19 +184,22 @@ async function doFetchAccessToken(credentialsPath) {
 * Depending on the provided operation, different outputs are set:
 * All operations can set the error_message output.
 *
-* |---------------------------------------------------------------------|
-* | operation          | output                                         |
-* |---------------------------------------------------------------------|
-* | fetch-access-token | access_token                                   |
-* |---------------------------------------------------------------------|
-* | preview            | successes - number of successful operations    |
-* |                    | failures - number of failures                  |
-* |---------------------------------------------------------------------|
-* | previewAndPublish  | successes - number of successful operations    |
-* |                    | failures - number of failures                  |
-* |---------------------------------------------------------------------|
-* |  *                 | error_message - string describing the error    |
-* |---------------------------------------------------------------------|
+* |--------------------------------------------------------------------------|
+* | operation               | output                                         |
+* |--------------------------------------------------------------------------|
+* | fetch-access-token      | access_token                                   |
+* |--------------------------------------------------------------------------|
+* | preview                 | successes - number of successful operations    |
+* |                         | failures - number of failures                  |
+* |--------------------------------------------------------------------------|
+* | previewAndPublish       | successes - number of successful operations    |
+* |                         | failures - number of failures                  |
+* |--------------------------------------------------------------------------|
+* | deletePreviewAndPublish | successes - number of successful operations    |
+* |                         | failures - number of failures                  |
+* |--------------------------------------------------------------------------|
+* |  *                      | error_message - string describing the error    |
+* |--------------------------------------------------------------------------|
 *
 * If the operation is unknown, an error is thrown.
 * @returns {Promise<void>}
@@ -208,14 +211,21 @@ async function run() {
     if (operation === AEM_HELPER_OPERATIONS.FETCH_ACCESS_TOKEN) {
       const credentialsPath = core.getInput('credentials_path');
       doFetchAccessToken(credentialsPath);
-    } else if (operation === AEM_HELPER_OPERATIONS.PREVIEW_PAGES
-      || operation === AEM_HELPER_OPERATIONS.PREVIEW_AND_PUBLISH) {
+    } else if (
+      operation === AEM_HELPER_OPERATIONS.PREVIEW_PAGES
+      || operation === AEM_HELPER_OPERATIONS.PREVIEW_AND_PUBLISH
+      || operation === AEM_HELPER_OPERATIONS.DELETE_PREVIEW_AND_PUBLISH
+    ) {
       const pagesInput = core.getInput('pages');
       const context = core.getInput('context');
       const pages = JSON.parse(pagesInput);
-
       const token = process.env.IMS_TOKEN;
-      await doPreviewPublish(pages, operation, context, token);
+
+      if (operation === AEM_HELPER_OPERATIONS.DELETE_PREVIEW_AND_PUBLISH) {
+        await deletePreviewPublish(pages, context, token);
+      } else {
+        await doPreviewPublish(pages, operation, context, token);
+      }
     } else {
       throw new Error(`Unknown AEM helper operation: ${operation}`);
     }
